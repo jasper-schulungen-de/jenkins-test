@@ -1,13 +1,9 @@
 /* Requires the Docker Pipeline plugin */
 pipeline {
-    agent none
-    environment {
-        dockerHome = tool 'jenkins-biosdb-docker'
-        PATH = "${dockerHome}/bin:${PATH}"
-    }
+    agent { docker { image 'maven:3.9.11-eclipse-temurin-21-alpine' } }
+    tools { docker jenkins-biosdb-docker }
     stages {
         stage('build') {
-            agent { docker { image 'maven:3.9.11-eclipse-temurin-21-alpine' } }
             steps {
                 sh 'mvn --version'
             }

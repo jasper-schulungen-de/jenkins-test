@@ -1,9 +1,11 @@
 /* Requires the Docker Pipeline plugin */
 pipeline {
     agent none
-    environment {
-        dockerHome = tool 'jenkins-biosdb-docker'
-        PATH = "${dockerHome}/bin:${PATH}"
+    node {
+        environment {
+            dockerHome = tool 'jenkins-biosdb-docker'
+            PATH = "${dockerHome}/bin:${PATH}"
+        }
     }
     stages {
         stage('build') {

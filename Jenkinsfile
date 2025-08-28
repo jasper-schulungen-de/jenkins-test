@@ -2,7 +2,9 @@
 pipeline {
     agent none
     environment {
-        dockerHome = tool 'jenkins-biosdb-docker'
+        node('master') {
+            dockerHome = tool 'jenkins-biosdb-docker'
+        }
         PATH = "${dockerHome}/bin:${PATH}"
     }
     stages {
